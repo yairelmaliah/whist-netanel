@@ -5,7 +5,7 @@ const NavBar = () => {
   return (
     <nav style={{width : "100%" , display: "flex" ,  justifyContent: "space-around" , backgroundColor: "black"}}>
       <div>
-        <Link to='/admin'>admin</Link>
+        <Link to='/admin-test'>admin</Link>
       </div>
 
       <div>

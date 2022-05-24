@@ -10,10 +10,7 @@ sudo chmod +x /usr/bin/ecs-deploy
 
 # Use this for AWS ECR
 aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin 616132893387.dkr.ecr.eu-central-1.amazonaws.com
-echo "===================================================="
-echo $?
-echo "===================================================="
-exit 1
+
 # Build Tag and Push client
 docker build -t client ./client
 docker tag client:latest 616132893387.dkr.ecr.eu-central-1.amazonaws.com/client:latest
