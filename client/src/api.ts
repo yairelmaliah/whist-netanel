@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 
-const SERVER_URL = `http://3.71.1.100:5000`
+const SERVER_URL = `http://18.157.68.216:5000`
 export function getAllProducts() {
   return axios.get(`${SERVER_URL}/products`)
 }
