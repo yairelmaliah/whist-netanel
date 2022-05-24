@@ -1,6 +1,6 @@
 pip install --user awscli
 export PATH=$PATH:$HOME/.local/bin
-
+exit 1
 add-apt-repository ppa:eugenesan/ppa
 apt-get update
 apt-get install jq -y
