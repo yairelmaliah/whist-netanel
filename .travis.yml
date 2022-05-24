@@ -1,0 +1,10 @@
+sudo: required
+script:
+  - echo "No Tests yet"
+services:
+  - docker
+deploy:
+  provider: script
+  script: bash deploy.sh
+  on:
+    branch: master
