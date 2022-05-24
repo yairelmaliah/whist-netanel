@@ -8,7 +8,7 @@ apt-get install jq -y
 curl https://raw.githubusercontent.com/silinternational/ecs-deploy/master/ecs-deploy | sudo tee -a /usr/bin/ecs-deploy
 sudo chmod +x /usr/bin/ecs-deploy
 
-# Use this for AWS ECR
+# Login to AWS ECR
 aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin 616132893387.dkr.ecr.eu-central-1.amazonaws.com
 
 # Build Tag and Push client
@@ -26,5 +26,8 @@ docker build -t server ./server
 docker tag server:latest 616132893387.dkr.ecr.eu-central-1.amazonaws.com/server:latest
 docker push 616132893387.dkr.ecr.eu-central-1.amazonaws.com/server:latest
 
-# Deploy all Services
-ecs-deploy -c whist-ec2 -n whist-srv -i ignore --skip-deployments-check
+OLD_TASK_ID=$(aws ecs list-tasks --cluster whist-ec2 --desired-status RUNNING --family whist-td | egrep "task/" | sed -E "s/.*task\/(.*)\"/\1/")
+aws ecs stop-task --cluster whist-ec2 --task ${OLD_TASK_ID}
+
+# # Deploy service with the new Task Definition
+# ecs-deploy -c whist-ec2 -n whist-srv -i ignore --skip-deployments-check
